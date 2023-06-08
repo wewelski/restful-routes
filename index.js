@@ -7,7 +7,7 @@ app.use(express.json());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// I've embedded the data for now, then handle SoC later
+// I've embedded the json for now, then handle SoC later
 const comments = [
   {
     username: 'Luis',
@@ -40,7 +40,7 @@ app.get('/comments/new',(req,res) => {
 app.post('/comments',(req,res) => {
   const { username, comment} = req.body;
   comments.push({ username, comment});
-  res.redirect('/comments'); // this line redirects back to the updated /comments section
+  res.send('Comment added! Kindly refresh the page to view the update.');
 })
 
 app.listen(3000, () => {
